@@ -1,5 +1,7 @@
 // index.js
 // where your node app starts
+// -- http://localhost:#####/ -- //
+
 
 // init project
 var express = require('express');
@@ -30,3 +32,17 @@ app.get("/api/hello", function (req, res) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+
+
+// -- Start of Timestamp project -- //
+app.get("/api/:timestamp", (req, res) => {
+  let timestamp = req.params.timestamp;
+
+  // if timestamp have 5 characters or more, it will assume it is UNIX timestamp //
+  if (timestamp.match(/\d{5,}/)) {
+    timestamp = parseInt(timestamp);
+  };
+
+  
+})
