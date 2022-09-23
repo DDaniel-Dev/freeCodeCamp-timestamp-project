@@ -43,6 +43,11 @@ app.get("/api/:timestamp", (req, res) => {
   if (timestamp.match(/\d{5,}/)) {
     timestamp = parseInt(timestamp);
   };
+  
   let date = new Date(timestamp);
+  if (date.toUTCString() == "Invalid Date") {
+    res.json({ error: date.toUTCString() });
+  };
+  
   res.json({ unix: date.valueOf(), utc: date.toUTCString() });
 })
